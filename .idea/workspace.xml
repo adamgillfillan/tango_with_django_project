@@ -29,7 +29,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rango/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="1" selection-start="116" selection-end="116" vertical-scroll-proportion="0.096045196" vertical-offset="0" max-vertical-offset="885">
+            <state line="5" column="46" selection-start="161" selection-end="161" vertical-scroll-proportion="0.096045196" vertical-offset="0" max-vertical-offset="885">
               <folding>
                 <element signature="e#20#62#0" expanded="true" />
               </folding>
@@ -504,7 +504,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rango/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="1" selection-start="116" selection-end="116" vertical-scroll-proportion="0.096045196" vertical-offset="0" max-vertical-offset="885">
+        <state line="5" column="46" selection-start="161" selection-end="161" vertical-scroll-proportion="0.096045196" vertical-offset="0" max-vertical-offset="885">
           <folding>
             <element signature="e#20#62#0" expanded="true" />
           </folding>
