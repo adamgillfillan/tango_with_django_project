@@ -430,7 +430,11 @@
       <created>1393393831846</created>
       <updated>1393393831846</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="testing commit again in PyCharm yet again">
+      <created>1393393839755</created>
+      <updated>1393393839755</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
