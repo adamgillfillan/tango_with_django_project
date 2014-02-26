@@ -434,7 +434,11 @@
       <created>1393393839755</created>
       <updated>1393393839755</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="testing commit again in PyCharm yet again1">
+      <created>1393393849123</created>
+      <updated>1393393849123</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -477,7 +481,8 @@
     <MESSAGE value="testing commit in PyCharm" />
     <MESSAGE value="testing commit again in PyCharm" />
     <MESSAGE value="testing commit again in PyCharm yet again" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing commit again in PyCharm yet again" />
+    <MESSAGE value="testing commit again in PyCharm yet again1" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing commit again in PyCharm yet again1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
