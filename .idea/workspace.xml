@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b84b6ba-e3f1-4579-8f21-3082995055cb" name="Default" comment="testing commit in PyCharm">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rango/urls.py" afterPath="$PROJECT_DIR$/rango/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="7b84b6ba-e3f1-4579-8f21-3082995055cb" name="Default" comment="testing commit again in PyCharm">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/Adam.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/tango_with_django_project.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="tango_with_django_project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -423,7 +430,11 @@
       <created>1393392759741</created>
       <updated>1393392759741</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="testing commit again in PyCharm">
+      <created>1393393603760</created>
+      <updated>1393393603760</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -464,7 +475,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="testing commit in PyCharm" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing commit in PyCharm" />
+    <MESSAGE value="testing commit again in PyCharm" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing commit again in PyCharm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
