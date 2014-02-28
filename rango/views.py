@@ -83,7 +83,7 @@ def add_category(request):
 
     # A HTTP POST?
     if request.method == 'POST':
-        form = CategoryForm(request.Post)
+        form = CategoryForm(request.POST)
 
         #Have we been provided a valid form?
         if form.is_valid():
