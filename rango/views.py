@@ -15,7 +15,7 @@ def index(request):
     # Place the list in our context_dict dictionary which will be passed to the template engine.
     category_list = Category.objects.order_by('-likes')[:5]
     context_dict = {'categories': category_list}
-
+    #asdf
     # We loop through each category returned, and create a URL attribute.
     # This attribute stores an encoded URL (e.g. spaces replaced with underscores).
     for category in category_list:
