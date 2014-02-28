@@ -24,8 +24,8 @@ def index(request):
     for category in category_list:
         category.url = category.name.replace(' ', '_')
 
-    for page in pages_list:
-        page.url = page.title.replace(' ', '_')
+    # for page in pages_list:
+    #     page.url = page.title.replace(' ', '_')
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
