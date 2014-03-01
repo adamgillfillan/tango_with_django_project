@@ -51,7 +51,8 @@ def category(request, category_name_url):
     # We can then simply replace the underscores with spaces again to get the name.
     category_name = category_name_url.replace('_', ' ')
 
-    context_dict = {'category_name': category_name}
+    context_dict = {'category_name': category_name,
+                    'category_name_url': category_name_url}
 
     try:
         # Can we find a category with the given name?
@@ -69,7 +70,7 @@ def category(request, category_name_url):
         # We also add the category object from the database to the context dictionary.
         # We'll use this in the template to verify that the category exists.
         context_dict['category'] = my_category
-        context_dict['category_name_url'] = category_name
+
     except Category.DoesNotExist:
         # We get here if we didn't find the specified category.
         # Don't do anything - the template displays the "no category" message for us.
@@ -80,20 +81,13 @@ def category(request, category_name_url):
 
 
 def add_category(request):
-    #Get the context from the request.
     context = RequestContext(request)
 
-    # A HTTP POST?
     if request.method == 'POST':
         form = CategoryForm(request.POST)
-
-        #Have we been provided a valid form?
         if form.is_valid():
             #save the new category to the database.
             form.save(commit=True)
-
-            # Now call the index() view.
-            # The user will be shown the homepage.
             return index(request)
         else:
             # print the errors to the terminal
@@ -133,7 +127,9 @@ def add_page(request, category_name_url):
             return category(request, category_name_url)
         else:
             print(form.errors)
-        return render_to_response( 'rango/add_page.html',
-            {'category_name_url': category_name_url,
-             'category_name': category_name, 'form': form},
-             context)
+    else:
+        form = PageForm()
+    return render_to_response( 'rango/add_page.html',
+        {'category_name_url': category_name_url,
+         'category_name': category_name, 'form': form},
+         context)
