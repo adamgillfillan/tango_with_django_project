@@ -47,11 +47,8 @@ def index(request):
 def about(request):
     context = RequestContext(request)
 
-    visits = request.session['visits']
-
+    visits = request.session.get('visits')
     context_dict = {'visits': visits}
-
-
 
     return render_to_response('rango/about.html', context_dict, context)
 
