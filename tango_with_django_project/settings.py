@@ -77,6 +77,7 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 
 WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
