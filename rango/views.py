@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
+from datetime import datetime
 
 
 def index(request):
@@ -17,7 +18,8 @@ def index(request):
     # Order the categories by no. likes in descending order.
     # Retrieve the top 5 only - or all if less than 5.
     # Place the list in our context_dict dictionary which will be passed to the template engine.
-    category_list = Category.objects.order_by('-likes')[:5]
+    #category_list = Category.objects.order_by('-likes')[:5]
+    category_list = Category.objects.all()
 
     pages_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list,
@@ -34,7 +36,25 @@ def index(request):
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
-    return render_to_response('rango/index.html', context_dict, context)
+    response = render_to_response('rango/index.html', context_dict, context)
+
+    visits = int(request.COOKIES.get('visits', '0'))
+
+    #if request.COOKIES.has_key('last_visit'):
+    if 'last_visit' in request.COOKIES:
+        last_visit = request.COOKIES['last_visit']
+        last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+        # If it's been more than a day since the last visit...
+        if (datetime.now() - last_visit_time).days > 0:
+            # ...reassign the value of the cookie to +1 of what it was before...
+            response.set_cookie('visits', visits + 1)
+            # ...and update the last visit cookie, too.
+            response.set_cookie('last_visit', datetime.now())
+    else:
+        # Cookie last_visit doesn't exist, so create it to the current date/time.
+        response.set_cookie('last_visit', datetime.now())
+
+    return response
 
 
 def about(request):
