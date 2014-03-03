@@ -26,6 +26,8 @@ MEDIA_URL = '/media/'
 
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'rango.db')
 
+LOGIN_URL = '/rango/login/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
