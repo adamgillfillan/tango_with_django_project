@@ -3,6 +3,7 @@
 {% block title %}Add a Category!{% endblock %}
 
 {% block body_block %}
+<div class="hero-unit">
 <h1>Add a Category</h1>
     {% if user.is_authenticated %}
         <form id="category_form" method="post" action="/rango/add_category/">
@@ -19,4 +20,5 @@
             <input type="submit" name="submit" value="Create Category" />
         </form>
     {% endif %}
+</div>
 {% endblock %}
