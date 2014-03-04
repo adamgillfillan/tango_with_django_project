@@ -51,6 +51,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
+
 class UserProfileForm(forms.ModelForm):
     website = forms.URLField(help_text="Please enter your website.", required=False)
     picture = forms.ImageField(help_text="Select a profile image to upload.", required=False)
