@@ -4,9 +4,11 @@ from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 
-from rango.models import Category, Page
+from rango.models import Category, Page, UserProfile
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -253,7 +255,9 @@ def user_login(request):
 def restricted(request):
     context = RequestContext(request)
 
-    return render_to_response('rango/restricted.html', {}, context)
+    cat_list = get_category_list()
+    context_dict = {"cat_list": cat_list}
+    return render_to_response('rango/restricted.html', context_dict, context)
 
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
@@ -278,3 +282,38 @@ def get_category_list():
         cat.url = encode_url(cat.name)
 
     return cat_list
+
+
+@login_required
+def profile(request):
+    context = RequestContext(request)
+    cat_list = get_category_list()
+    context_dict = {'cat_list': cat_list}
+    user = User.objects.get(username=request.user)
+
+    try:
+        userprofile = UserProfile.objects.get(user=user)
+    except:
+        userprofile = None
+
+    context_dict['user'] = user
+    context_dict['userprofile'] = userprofile
+    return render_to_response('rango/profile.html', context_dict, context)
+
+
+def track_url(request):
+    context = RequestContext(request)
+    page_id = None
+    url = '/rango/'
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                url = page.url
+            except:
+                pass
+
+    return redirect(url)
