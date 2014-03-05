@@ -13,6 +13,7 @@ def index(request):
     # Request the context of the request.
     # The context contains information such as the client's machine details, for example.
     context = RequestContext(request)
+    cat_list = get_category_list()
 
     # Query the database for a list of ALL categories currently stored.
     # Order the categories by no. likes in descending order.
@@ -22,8 +23,7 @@ def index(request):
     category_list = Category.objects.all()
 
     pages_list = Page.objects.order_by('-views')[:5]
-    context_dict = {'categories': category_list,
-                    'pages': pages_list}
+    context_dict = {'categories': category_list, 'pages': pages_list, 'cat_list': cat_list}
 
     # We loop through each category returned, and create a URL attribute.
     # This attribute stores an encoded URL (e.g. spaces replaced with underscores).
@@ -49,6 +49,8 @@ def about(request):
 
     visits = request.session.get('visits')
     context_dict = {'visits': visits}
+    cat_list = get_category_list()
+    context_dict['cat_list'] = cat_list
 
     return render_to_response('rango/about.html', context_dict, context)
 
@@ -63,6 +65,8 @@ def category(request, category_name_url):
 
     context_dict = {'category_name': category_name,
                     'category_name_url': category_name_url}
+    cat_list = get_category_list()
+    context_dict['cat_list'] = cat_list
 
     try:
         # Can we find a category with the given name?
@@ -92,7 +96,7 @@ def category(request, category_name_url):
 
 def add_category(request):
     context = RequestContext(request)
-
+    cat_list = get_category_list()
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -108,7 +112,7 @@ def add_category(request):
 
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
-    return render_to_response('rango/add_category.html', {'form': form}, context)
+    return render_to_response('rango/add_category.html', {'form': form, 'cat_list': cat_list}, context)
 
 
 def decode_url(category_name_url):
@@ -120,6 +124,8 @@ def add_page(request, category_name_url):
     context = RequestContext(request)
 
     category_name = decode_url(category_name_url)
+    cat_list = get_category_list()
+
     if request.method == 'POST':
         form = PageForm(request.POST)
 
@@ -153,7 +159,8 @@ def add_page(request, category_name_url):
 
     return render_to_response('rango/add_page.html',
                               {'category_name_url': category_name_url,
-                               'category_name': category_name, 'form': form},
+                               'category_name': category_name, 'form': form,
+                               'cat_list': cat_list},
                               context)
 
 
@@ -161,6 +168,7 @@ def register(request):
     context = RequestContext(request)
 
     registered = False
+    cat_list = get_category_list()
 
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -194,14 +202,16 @@ def register(request):
         'rango/register.html',
         {'user_form': user_form,
          'profile_form': profile_form,
-         'registered': registered},
+         'registered': registered,
+         'cat_list': cat_list},
         context)
 
 
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
-
+    cat_list = get_category_list()
+    context_dict = {"cat_list": cat_list}
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Gather the username and password provided by the user.
@@ -236,7 +246,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render_to_response('rango/login.html', {}, context)
+        return render_to_response('rango/login.html', context_dict, context)
 
 
 @login_required
@@ -254,3 +264,17 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/rango/')
+
+
+def encode_url(category_name_url):
+    category_name = category_name_url.replace(' ', '_')
+    return category_name
+
+
+def get_category_list():
+    cat_list = Category.objects.all()
+
+    for cat in cat_list:
+        cat.url = encode_url(cat.name)
+
+    return cat_list
