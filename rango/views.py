@@ -79,9 +79,13 @@ def category(request, category_name_url):
         # Retrieve all of the associated pages.
         # Note that filter returns >= 1 model instance.
         pages = Page.objects.filter(category=my_category)
+        pages_list = pages.order_by('-views')
+
+
 
         # Adds our results list to the template context under name pages.
-        context_dict['pages'] = pages
+        context_dict['pages'] = pages_list
+
 
         # We also add the category object from the database to the context dictionary.
         # We'll use this in the template to verify that the category exists.
